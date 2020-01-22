@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Emotion and Decision-Making Experiment</title>
+         <link rel="shortcut icon" href="#" />  <!--to resolve favicon.ico error. see: https://stackoverflow.com/questions/31075893/im-getting-favicon-ico-error -->
+                
+        <link id="styleSheetInUse" rel="stylesheet" href="/CA_ratingTask/CA_ratingStyles.css" type="text/css"> <!--type="text/css">-->
+        <link id="styleSheet2" rel="stylesheet" href="/CA_ratingTask/jquery-ui.css" type="text/css"> <!--https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css-->
+        
+        <script src="/CA_ratingTask/CA_ratingSettings.js" type="text/javascript"></script>
+        <script src="/CA_ratingTask/CA_ratingFunctions.js" type="text/javascript"></script>
+        <script src="/CA_ratingTask/CA_ratingQuestionnaires.js" type="text/javascript"></script>
+        <script src="/CA_ratingTask/jquery.js"  type="text/javascript"></script>
+        
+        <!--SURVEYJS LINKS-->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+        <script src="/CA_ratingTask/survey.jquery.js"> </script> <!-- <script src="https://surveyjs.azureedge.net/0.97.0/survey.jquery.js"></script>-->
+        
+        <!--JQUERY ALERTS-->
+        <script src="/CA_ratingTask/jquery-ui.js"> </script> <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>-->
+        <link id="alertStyleSheet" rel="stylesheet" href="/CA_ratingTask/jquery-ui_2.css" type="text/css"> <!-- <link id="alertStyleSheet" rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+
+        <!--MATTERJS-->
+        <script src="/CA_ratingTask/matter.js"></script> <!-- physics engine -->
+    </head>
+    <body onLoad="preloader()"> <!-- pre-load background images before experiment -->
+
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        INTRO, INFO, CONSENT
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+
+        <div id="startN"> <!-- div tag groups html elements -->
+            <h1><br><br>Welcome to the experiment!</h1>
+            The experiment will launch <div id="yesFullScreen" style="display:none">in fullscreen mode </div>when you click the button below.<br><br>
+            <button id = "startButton" type="button" class="buttons" onclick="startExperiment()">Start</button><br><br>
+        </div>
+
+        <div id="participantInfoSheet" style="display:none; margin-left: 25%; margin-right: 25%;">
+            <h1><b>Participant Information</b></h1><br>
+            Click here to print this page:
+            <br>
+            <input type="button" class="buttons" onClick='window.print()'  value='Print'/> 
+            <br><br>
+
+            <p style="text-align:left"><b>1. Background and aims of the study</b><br>
+
+                The primary aim of this study is find out more about how people learn from feedback and how this relates to 
+                people’s personality traits and mood. We hope that a better understanding of these processes will, in the 
+                future, contribute to the development of new approaches to improve mental wellbeing.<br><br>
+
+                This study is funded by the Medical Research Council and the Wellcome Trust.<br><br>
+
+                <b>2. Why have I been invited to take part? </b><br>
+
+                You have been invited because you have responded to an advert for this study. To take part in this 
+                study, you need to be between 18 and 40 years old. You also need to have normal or corrected to 
+                normal vision and hearing.<br><br>
+
+                <b>3. Do I have to take part? </b><br>
+
+                No.  You can ask questions about the study before deciding whether or not to participate by emailing 
+                the principal researcher (address details below). If you do agree to participate, you may withdraw yourself 
+                from the study at any time, without giving a reason and without penalty. <br><br>
+
+                <b>4. What will happen in the study? </b><br>
+
+                If you are happy to take part in the study, you will be asked to perform a simple computer task such as 
+                rating pictures estimating a time interval, estimating how well you have performed on the computer task. 
+                You will then be asked to complete questionnaires that will measure psychological traits and potential 
+                psychiatric symptoms (e.g. it will ask you questions about whether or not you experience low mood or anxiety).<br><br>
+
+                This should take approximately 1-2h.<br>
+                The study will take place online. <br>
+                There will not be any follow-up sessions.<br><br>
+
+                <b>5. Are there any potential risks in taking part? </b><br>
+
+                Psychological and/or psychiatric questionnaires may be perceived as distressing or intrusive. If you 
+                experience significant distress as a result of the questionnaires, you can immediately stop the study by 
+                clicking on the ‘Exit Study Now’ button without giving a reason and without penalty. In this case you 
+                will still be reimbursed for your time in the study so far.<br><br>
+
+                <b>6. Are there any benefits in taking part? </b><br>
+
+                There will be no direct benefit to you from taking part in this research. You will not receive results or 
+                psychiatric/psychological assessments from the questionnaires. <br><br>
+
+                <b>7. Expenses and payments </b><br>
+
+                You will be reimbursed for your time in the study via the third party website administering the study. 
+                You will receive £5 per hour and a flexible bonus depending on the choices you make in the online task 
+                (up to £7 per hour).<br><br>   
+
+                <b>8. What happens to the data provided? </b><br>
+
+                The anonymous research data will be stored confidentially using password-protected computers and 
+                servers. We will not store any data that can identify you (e.g. we will not ask your for your email address 
+                or store your IP address). Although every reasonable effort will be taken, confidentiality during actual 
+                Internet communication procedures cannot be guaranteed. Terms of use and privacy policies relevant 
+                to the third-party website in use should be consulted.<br><br>
+
+                <b>Note: Anonymity may make it very difficult or impossible to withdraw 
+                    data retroactively from the study after completing part or all of an online session.</b><br><br>
+
+                Anonymized data will be published open access as part of the publication of the research to facilitate its use in future research.<br><br>
+
+                All research data and records will be stored for a minimum retention period of 3 years after publication or public release of the work of the research. The third-party website administering the study may store data on backups or server logs beyond the time frame of this research project.<br><br>
+
+                <b>Will the research be published?</b><br>
+
+                The research will be published in peer-reviewed journal.<br><br>
+
+                <b>Who has reviewed this study?</b><br>
+
+                This study has been reviewed by, and received ethics clearance through, the University of Oxford Central University Research Ethics Committee <b>(reference number: xxx).</b><br><br>
+
+                <b>11. Who do I contact if I have a concern about the study or I wish to complain?</b><br>
+
+                If you have a concern about any aspect of this study, please speak to Dr. Jacqueline Scholl (+44 (0)1865 612715) 
+                or their supervisor, Professor Matthew Rushworth (+44 (0)1865 271308 ) who will do their best to answer 
+                your query. The researcher should acknowledge your concern within 10 working days and give you an 
+                indication of how they intend to deal with it. If you remain unhappy or wish to make a formal complaint, 
+                please contact the relevant chair of the Research Ethics Committee at the University of Oxford who will 
+                seek to resolve the matter in a reasonably expeditious manner:<br><br>
+
+                Chair, <b>Medical Sciences Inter-Divisional Research Ethics Committee</b>; Email: ethics@medsci.ox.ac.uk; 
+                Address: Research Services, University of Oxford, Wellington Square, Oxford OX1 2JD<br><br>
+
+                <b>Further information and contact details</b><br>
+
+                If you would like to discuss the research with someone beforehand (or if you have questions afterwards), please contact:<br><br>
+
+                Dr Jacqueline Scholl<br>
+                Department of Experimental Psychology<br>
+                Tinsley Building, Mansfield Road, Oxford, OX2 3SR<br>
+                Phone: +44 (0)1865 612715<br>
+                <a href="mailto:Jacqueline.scholl@psy.ox.ac.uk">Jacqueline.scholl@psy.ox.ac.uk</a>
+                <br>
+            </p>
+            <br><input type="checkbox" id="infoSheetCheckbox" onclick="checkBoxes()"> I have read and understood this information (please check to proceed).<br><br>
+        </div>
+
+        <div id="consentForm" style="margin-left:20%;margin-right:20%;display:none;">
+            <br><br><br><br><h1>Participant Consent Form</h1><br>
+            <p>CUREC Approval Reference: xxx. Purpose of study: xxx<br><br>
+            Please read the following declarations and check the boxes if you understand and agree with them (all boxes must be checked in order to proceed with the experiment):<br><br>
+            <input type="checkbox" id="consent1" class="consentBoxes" onclick="checkBoxes()"> I have read the participant information sheet.<br>
+            <input type="checkbox" id="consent2" class="consentBoxes" onclick="checkBoxes()"> I have had opportunity to ask questions about the study, and if I have, I have received satisfactory answers to these questions.<br>
+            <input type="checkbox" id="consent3" class="consentBoxes" onclick="checkBoxes()"> I understand I can withdraw from the study at any point before, during, or after the study without penalty.<br>
+            <input type="checkbox" id="consent4" class="consentBoxes" onclick="checkBoxes()"> I understand this study has been reviewed and received ethics clearance through the University of Oxford Central University Research Ethics Committee.<br>
+            <input type="checkbox" id="consent5" class="consentBoxes" onclick="checkBoxes()"> I understand how this research will be written up and published.<br>
+            <input type="checkbox" id="consent6" class="consentBoxes" onclick="checkBoxes()"> I understand that the researchers will only collect anonymised data from me. I understand that I cannot be identified from these data.<br>
+            <input type="checkbox" id="consent7" class="consentBoxes" onclick="checkBoxes()"> I agree for my anonymised research data collected in this study to be deposited in open access archives so that it may be used in other research studies. I understand that any data that leave the research group will be fully anonymised so that I cannot be identified.<br>
+            <input type="checkbox" id="consent8" class="consentBoxes" onclick="checkBoxes()"> I understand how to raise a concern and make a complaint.<br>
+            <input type="checkbox" id="consent8" class="consentBoxes" onclick="checkBoxes()"> I agree to take part in this study.</p><br><br>
+        </div>
+
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                INSTRUCTIONS
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+
+        <div id="PilotInstructionsDiv" style="display:none;"> 
+            <div id="PilotInstrTextsDiv">
+                <br><br>
+                <!-- Rock Slide Task part 1-->
+                <div id="pt0" class="PilotInstrTextsClass">
+                    <br>Click through these task instructions using the buttons at the bottom. <br><br>
+                    The purpose of this study is to test how well people can play some mini games, and how good they are at judging their performance.
+                    The study involves playing 300 rounds of a game. In each round you will play one of three mini games: the 'Rock Slide Game', the 'Slingshot Game', or the 'Bouncing Ball Game'.
+                    First, let's learn about the 'Rock Slide' game. Your goal is to perform as well as possible and to judge how accurately you are playing the game.
+                    How well you play will later be translated into money (1 point = xx$).<br><br>
+                </div>
+                <div id="pt1" class="PilotInstrTextsClass">
+                    <br>In the Rock Slide game, you will judge the timing of when a ball reaches a target (the red cross). In every round the target will be in a different place.<br>
+                    <br>First you will see a screen with a series of slopes and a red cross target. When you are ready, you will press the green <b>START</b> button to begin the game (above, left). 
+                    When you press START the ball will start rolling down the slopes (above, right).<br><br>
+                </div>
+                <div id="pt2" class="PilotInstrTextsClass">
+                    <br>Watch the ball carefully as it rolls down the slope. When it hits the target, press the red <b>TARGET HIT</b> button. Make the timing of your button press as accurate as you can.<br><br>
+                </div>
+                <div id="pt3" class="PilotInstrTextsClass">
+                    <br>Next, use the blue tick mark to indicate on the color bar how well you think you did.<br><br>
+                    On the color bar, red represents poor accuracy and green represents good accuracy. <b>Click and drag</b> the blue tick mark into the position 
+                    that best represents how well you played the last round. Then press DONE.<br><br>
+                </div>
+                <div id="pt4" class="PilotInstrTextsClass">
+                    <br>That's it for the Rock Slide Game! <br><br>Press <b>PLAY</b> to practice this game.<br><br>
+                </div>
+                <br><br>
+            </div>
+                        <div id ="PilotInstrPicsDiv">
+                <!-- Rock Slide Task part 1-->
+                <img src="/CA_ratingTask/pictures/Instructions/Slide0.png" id="ps0" class="PilotInstrPicsClass" alt="Problems showing instructions. Please read through the text best you can and then do the training rounds"/>
+                <img src="/CA_ratingTask/pictures/Instructions/Slide1.png" id="ps1" class="PilotInstrPicsClass" alt="Problems showing instructions. Please read through the text best you can and then do the training rounds"/>
+                <img src="/CA_ratingTask/pictures/Instructions/Slide2.png" id="ps2" class="PilotInstrPicsClass" alt="Problems showing instructions. Please read through the text best you can and then do the training rounds"/>
+                <img src="/CA_ratingTask/pictures/Instructions/Slide27.png" id="ps3" class="PilotInstrPicsClass" alt="Problems showing instructions. Please read through the text best you can and then do the training rounds"/>
+                <img src="/CA_ratingTask/pictures/Instructions/Slide0.png" id="ps4" class="PilotInstrPicsClass" alt="Problems showing instructions. Please read through the text best you can and then do the training rounds"/>
+                 </div>   
+        </div>
+        <div id="instrButtonsDiv" style="display:none;">
+            <br><br>
+            <button type="button" class="buttons" id="backwInstrButton" onclick="backwardInstr()"> &laquo; Previous</button>
+            <button type="button" class="buttons" id="forwInstrButton"  onclick="forwardInstr()"> Next &raquo;</button>
+            <button type="button" class="buttons" id="startTrainingButton" onclick="startTraining()"> Play </button>
+        </div>
+        
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                QUESTIONNAIRES
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+        <div id="instrQuestionnaires" style="display:none; margin-left:20%; margin-right:20%;">
+            <br><br><br><br>
+            <h1>Questionnaires</h1>
+            <p>You will now be given some questions to answer. Please try to answer each 
+            question as honestly as you can. You can choose not to answer any or all of the questions, and you can 
+            leave the experiment at any time. However, your responses on these questions will benefit our research greatly.<br><br>
+            Please click "next" to proceed.</p><br><br>
+        </div>
+
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        RATING CANVAS
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+        <canvas id="ratingCanvas" width="1275" height="600" style="display: none; visibility: visible;"></canvas> <!-- border:5px solid #00FF00; -->
+        
+        <img id ="enterButton" src="/CA_ratingTask/pictures/Enter_button.png" style="display:none">
+
+        <div id="pilotRatingElements" style="display:none; position:relative; text-align:left;width: 320px;">
+            Click and drag the blue tick mark onto<br>
+            the rating scale. Set it to the level that <br>
+            represents how <b>accurate</b> your response<br>
+            was on the last round. Then press DONE.
+        </div>
+
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        QUESTIONNAIRES AND JQUERY DIALOG BOX
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+        <div id="surveyContainer" style="display:none; position:relative; top:0px; margin-left:30%; margin-right:30%;"></div> 
+
+        <div id="dialog-confirm" style="display:none;" title="Continue without finishing?">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Answers are missing from one or more questions.</p>
+        </div>
+
+        <div id="dialog-confirm2" style="display:none;" title="Unfinished form">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Please complete all questions before continuing with the experiment.</p>
+        </div>
+
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+         END OF EXPERIMENT
+         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+
+        <div id="endExperiment" style="display:none">
+            <br><br><br><br>Thank you for taking part in the study.<br><br>
+            With the bonus from your performance, you have earned a total of <b>£?.??.</b><br><br>
+            <b>IMPORTANT:</b> To finish the study and receive payment for your participation, please click the button below:<br><br>
+            <button type="button" class="buttons" id="finishExptButton" onclick="saveData()"> Finish Experiment </button>
+        </div>
+
+        <div id="submitOrQuit" style="display:none; position: relative; margin-top: 0px; margin-left: 10%; margin-right: 10%;"> 
+            <br><br>You have chosen to leave the experiment without finishing.<br>
+            If this is a mistake, please click "Return to study". To leave the experiment, please choose whether to submit your data 
+            so far before quitting. Thank you for your participation.<br><br>
+            <button type="button" class="buttons" id="returnToStudy" onclick="returnToStudy()">Return to study</button><br><br>
+            <button type="button" class="buttons" id="submitDataSoFar" onclick="submitDataSoFar()"> Submit data and quit </button>
+            <button type="button" class="buttons" id="quitWithoutSubmitting" onclick="quitWithoutSaving()">Quit without submitting data</button>
+        </div>
+
+        <div id="commentBox" style="display:none;">
+            <br><br>Enter comments (optional):<br>
+            <textarea cols="75" name="comments" id="commentid"></textarea> <!-- style="font-family:sans-serif;font-size:1.2em;-->
+            <button type="button" class="buttons" id="submitComments" onclick="submitComments()">Submit</button>
+        </div>
+
+        <div id="submitToProlific" style="display:none">
+            <br>
+            <strong>Important!</strong><br>
+            Click the button below to end the experiment and submit your task data.<br><br>
+            <form action="https://prolific.ac/submissions/complete?cc=HD7PQZU6"><input type="submit" value="Submit" /></form>
+        </div>
+
+        <div id ="psychiatricHelpPage" style ="display:none">
+            <br>
+            <h3>If you are concerned about your mental health, here are some contacts that you might find useful (please copy and paste the links into your browser):</h3><br>
+
+            <table class = "infoTable" align="center">
+                <thead>
+                    <tr>
+                        <th>Resource</th>
+                        <th>Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th align="left"><b>Your GP:</b> Book an appointment with your GP. They can offer advice or refer you to other more specific services to get help.<br><br></th>
+                        <th align="left" width=35%;>Your GP's number<br> <br></th>
+                    </tr>
+                    <tr>
+                        <th align="left"><b>Mind</b> provides information, guidance, and links to support services for those with living with a mental health problem or supporting someone who is.<br><br></th>
+                        <th align="left">Visit: <b>https://www.mind.org.uk/</b><br><br></th>
+                    </tr>
+                    <tr>
+                        <th align="left"><b>FRANK</b> provides friendly, confidential drugs advice.<br><br></th>
+                        <th align="left">Visit: <b>http://www.talktofrank.com</b> <br>or call <b>0300 123 6600</b><br> <br></th>
+                    </tr>
+                    <tr>
+                        <th align="left"><b>NHS Choices:</b> Enter your location to discover mental health support services near you.<br><br></th>
+                        <th align="left">Visit: <b>https://www.nhs.uk/Service-Search/Mental%20health%20support/LocationSearch/330</b><br> <br></th>
+                    </tr>
+                    <tr>
+                        <th align="left"><b>IN AN EMERGENCY:</b> If you are experiencing suicidal thoughts and think that you might be unable to keep yourself safe, visit your nearest A&E department or call emergency services.<br><br></th>
+                        <th align="left">Call: <b>999</b><br> <br></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        BUTTONS
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+        <br>
+        <button type="button" id="next-button"  class="buttons" style="margin:auto; display:none;" onclick="proceedInExpt()">Next</button><br><br>
+        <button type="button" id="returnToInfoPage" class="buttons" onclick="returnToInfoPage()" style="position: relative; display:none; bottom:0;"> Return to Information Page </button>
+    
+    <script src="/CA_ratingTask/CA_ratingRun.js" type="text/javascript"></script>
+    </body>
+</html>

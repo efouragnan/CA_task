@@ -1,0 +1,150 @@
+/*
+html {
+    background: url(images/empty.png); background/bg0.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}*/
+
+body {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    /*width: 60%;
+    //margin: 50px auto 50px auto; */
+    text-align: center;
+    color: black;
+    background-size: 100%;
+    padding:0;
+}
+
+h1 {
+    font-size: 40px;
+    text-align:center;
+    /*font-weight: normal;*/
+}
+
+p {
+    text-align: left;
+    /*font-weight: normal;*/
+}
+
+/*body:not(.zone-landing) .edit-button {
+    background-color: #990000; //#0095dd;
+    color: #fff //(white)) //#ff00ff; //(magenta)
+    text-align: center;
+}*/
+
+.buttons{
+    font-size:95%;   
+    border-radius:3%;
+}
+
+.edit-button:hover {
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,0.24),0 4px 12px 0 rgba(0,0,0,0.19);
+}
+
+#targetPic{
+    font-size: 20px;
+    /*width: 250px;
+height: 150px;*/
+}
+
+img {
+    /*width: 180px;*/
+    /*height: 180px;*/
+    border-style: none;
+}
+
+
+#startN{
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+td {
+    text-align: center;
+    position: absolute;
+    left: 45%;
+}
+td * {
+    display: inline;
+}
+
+#gameCanvas{
+    position:fixed;
+}
+
+#feedbackCanvas{
+    position:fixed;
+}
+
+#ratingCanvas{
+    position:fixed;
+    /*border:5px solid red;*/
+}
+
+.infoTable {
+    /*border: solid 1px #DDEEEE;*/
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 60%;
+}
+
+.infoTable thead th {
+    /*background-color: #DDEFEF;*/
+    /*border: solid 1px #DDEEEE;*/
+    color: #336B6B;
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+    position:relative;
+    font-size: 30px;
+    /*padding-bottom: 10px;*/
+}
+
+.infoTable tbody {
+    /*border: solid 1px #DDEEEE;*/
+    color: #333;
+    padding: 30px;
+    padding-right: 50px;
+    /*background-color: #f5f5f5;*/
+}
+
+th {
+    padding-top:10px;
+    /*padding-right: 30px;*/
+    /*padding-left: 30px;*/
+    padding-bottom: 20px;
+    text-align: left;
+    vertical-align: top;
+}
+
+/* ------------------------------------------
+INSTRUCTIONS
+--------------------------------------------*/
+
+#instrTextsDiv{
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align:left;
+    position:relative;
+}
+
+#PilotInstrTextsDiv{
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align:left;
+    position:relative;
+}
+
+/* ------------------------------------------
+QUIZ
+--------------------------------------------*/
+
+#quizTextDiv{
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: left;
+}
